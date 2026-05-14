@@ -28,3 +28,4 @@ INSERT INTO orders VALUES
 (102, 2, 2, '2024-01-11', 700),
 (103, 1, 1, '2024-01-15', 1200),
 (104, 3, 3, '2024-01-18', 300);
+-- commit marker: Create employees and orders tables with sample data
