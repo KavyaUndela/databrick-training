@@ -46,3 +46,4 @@ INSERT INTO Project VALUES
 (2, 'ProjectB', 2),
 (3, 'ProjectC', 2),
 (4, 'ProjectD', 3);
+-- commit marker: TABLE_CREATION.sql
