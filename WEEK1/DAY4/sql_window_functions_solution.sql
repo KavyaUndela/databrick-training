@@ -325,3 +325,4 @@ FROM (
     FROM employee_sales
 ) t
 WHERE rnk = 1;
+-- commit marker: Add SQL window functions solutions
