@@ -92,3 +92,5 @@ After completing this assignment, I learned:
 ```
 ```
 <!-- commit marker: Add README for Day 3 SQL Joins Assignment -->
+
+<!-- commit marker: Add README for Day 3 SQL Joins Assignment -->
