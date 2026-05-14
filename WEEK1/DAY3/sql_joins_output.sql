@@ -236,3 +236,4 @@
 ---
 
 [View on DB Fiddle](https://www.db-fiddle.com/)
+-- commit marker: Add SQL queries for various join operations
