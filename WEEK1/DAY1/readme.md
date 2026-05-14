@@ -116,4 +116,4 @@ B.Tech 4th Year
 IT
 Vishnu Institute of Technology
 
----
+---\n\nCommit note: Day 1 SQL Practice
