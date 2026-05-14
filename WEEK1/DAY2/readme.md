@@ -428,3 +428,4 @@ B.Tech 4th Year
 23PA1A12M2
 IT
 Vishnu Institute of Technology
+<!-- commit marker: Enhance README for WEEK 1 - DAY 2 SQL Practice -->
