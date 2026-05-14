@@ -275,4 +275,4 @@ WHERE age > (
   SELECT AVG(age)
   FROM Employee
   WHERE department_id = e.department_id
-);
+);\n-- Commit note: Added Day 2 SQL Practice
