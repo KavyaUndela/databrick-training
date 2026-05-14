@@ -276,3 +276,4 @@ WHERE age > (
   FROM Employee
   WHERE department_id = e.department_id
 );
+-- commit marker: Create Sql_queries.sql with employee queries
