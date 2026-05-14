@@ -118,3 +118,4 @@ SELECT
     c.course_name
 FROM students s
 CROSS JOIN courses c;
+-- commit marker: Update sql_joins_solutions.sql
