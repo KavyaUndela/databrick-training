@@ -51,3 +51,4 @@ INSERT INTO enrollments VALUES
 (2, 2, 102, '2024-01-11'),
 (3, 3, 101, '2024-01-12'),
 (4, 1, 104, '2024-01-15');
+-- commit marker: Initialize database schema with sample data
