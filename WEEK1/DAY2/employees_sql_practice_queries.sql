@@ -288,3 +288,4 @@ WHERE city LIKE 'B%';
 -- Find employees whose department ends with 's'
 SELECT * FROM Employees
 WHERE department LIKE '%s';
+-- commit marker: Added Day 2 SQL Practice

@@ -23,3 +23,4 @@ INSERT INTO Employees VALUES
 (113, 'Tarun', 'Sales', 46000, 'Chennai', 2),
 (114, 'Kavya', 'IT', 97000, 'Hyderabad', 9),
 (115, 'Manoj', 'Finance', 58000, 'Mumbai', 4);
+-- commit marker: Added Day 2 SQL Practice
