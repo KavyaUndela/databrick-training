@@ -1,0 +1,66 @@
+-- TOTAL RECORDS
+
+SELECT COUNT(*) AS total_records
+FROM flipkart_raw_data;
+
+total_records
+10
+
+
+-- NULL VALUES
+
+SELECT *
+FROM flipkart_raw_data
+WHERE amount IS NULL;
+
+order_id customer_id product category    city    order_date amount quantity
+1004     C104        Watch   Accessories Mumbai  2024-01-04 NULL   3
+1008     C108        Watch   Accessories Mumbai  2024-01-09 NULL   2
+
+
+SELECT *
+FROM flipkart_raw_data
+WHERE city IS NULL;
+
+order_id customer_id product category    city order_date amount quantity
+1003     C103        Tablet  Electronics NULL 2024-01-03 25000 1
+1006     C106        Mobile  Electronics NULL 2024-01-07 -3000 4
+
+
+-- NEGATIVE VALUES
+
+SELECT *
+FROM flipkart_raw_data
+WHERE amount < 0;
+
+order_id customer_id product    category     city   order_date amount quantity
+1005     C105        Headphones Accessories  Delhi  2024-01-05 -2000 2
+1006     C106        Mobile     Electronics  NULL   2024-01-07 -3000 4
+
+
+-- DUPLICATE ORDER IDS
+
+SELECT
+order_id,
+COUNT(*) AS duplicate_count
+FROM flipkart_raw_data
+GROUP BY order_id
+HAVING COUNT(*) > 1;
+
+order_id duplicate_count
+1001     2
+1002     2
+
+
+-- UPDATED RECORDS
+
+SELECT
+order_id,
+COUNT(DISTINCT order_date) AS different_dates
+FROM flipkart_raw_data
+GROUP BY order_id
+HAVING COUNT(DISTINCT order_date) > 1;
+
+order_id different_dates
+1001     2
+1002     2

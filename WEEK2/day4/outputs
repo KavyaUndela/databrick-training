@@ -1,0 +1,382 @@
+-- 1. Employees whose salary is NULL
+
+SELECT *
+FROM Employees
+WHERE salary IS NULL;
+
+emp_id name  salary bonus manager_id
+2      John  NULL   5000  102
+4      David NULL   NULL  103
+6      Kiran NULL   NULL  NULL
+8      Neha  NULL   2000  NULL
+
+
+-- 2. Orders where discount is NOT NULL
+
+SELECT *
+FROM Orders
+WHERE discount IS NOT NULL;
+
+order_id customer_name amount discount coupon_code
+102      John          NULL   50       NULL
+105      Priya         1500   100      NULL
+108      Neha          NULL   200      DISC15
+
+
+-- 3. Products where category is NULL
+
+SELECT *
+FROM Products
+WHERE category IS NULL;
+
+product_id product_name price category stock
+3          Tablet       30000 NULL     5
+4          Headphones   NULL  NULL     NULL
+7          Mouse        500   NULL     NULL
+
+
+-- 4. Count employees with NULL manager_id
+
+SELECT COUNT(*) AS total_null_managers
+FROM Employees
+WHERE manager_id IS NULL;
+
+total_null_managers
+3
+
+
+-- 5. Replace NULL salary with 0
+
+SELECT
+    emp_id,
+    name,
+    IFNULL(salary,0) AS salary
+FROM Employees;
+
+emp_id name  salary
+1      Amit  50000
+2      John  0
+3      Sara  60000
+4      David 0
+5      Priya 45000
+6      Kiran 0
+7      Ravi  70000
+8      Neha  0
+
+
+-- 6. Replace NULL bonus with 1000
+
+SELECT
+    emp_id,
+    name,
+    IFNULL(bonus,1000) AS bonus
+FROM Employees;
+
+emp_id name  bonus
+1      Amit  1000
+2      John  5000
+3      Sara  1000
+4      David 1000
+5      Priya 3000
+6      Kiran 1000
+7      Ravi  7000
+8      Neha  2000
+
+
+-- 7. Replace NULL amount with 500
+
+SELECT
+    order_id,
+    customer_name,
+    IFNULL(amount,500) AS order_amount
+FROM Orders;
+
+order_id customer_name order_amount
+101      Amit          1000
+102      John          500
+103      Sara          2000
+104      David         500
+105      Priya         1500
+106      Kiran         500
+107      Ravi          3000
+108      Neha          500
+
+
+-- 8. Replace NULL stock with 0
+
+SELECT
+    product_id,
+    product_name,
+    IFNULL(stock,0) AS stock
+FROM Products;
+
+product_id product_name stock
+1          Laptop      10
+2          Phone       0
+3          Tablet      5
+4          Headphones  0
+5          Monitor     0
+6          Keyboard    15
+7          Mouse       0
+8          Printer     3
+
+
+-- 9. Employee earnings using salary else bonus
+
+SELECT
+    emp_id,
+    name,
+    COALESCE(salary, bonus) AS earnings
+FROM Employees;
+
+emp_id name  earnings
+1      Amit  50000
+2      John  5000
+3      Sara  60000
+4      David NULL
+5      Priya 45000
+6      Kiran NULL
+7      Ravi  70000
+8      Neha  2000
+
+
+-- 10. First available value salary → bonus → 0
+
+SELECT
+    emp_id,
+    name,
+    COALESCE(salary, bonus, 0) AS final_income
+FROM Employees;
+
+emp_id name  final_income
+1      Amit  50000
+2      John  5000
+3      Sara  60000
+4      David 0
+5      Priya 45000
+6      Kiran 0
+7      Ravi  70000
+8      Neha  2000
+
+
+-- 11. Product price else 1000
+
+SELECT
+    product_id,
+    product_name,
+    COALESCE(price,1000) AS final_price
+FROM Products;
+
+product_id product_name final_price
+1          Laptop      50000
+2          Phone       1000
+3          Tablet      30000
+4          Headphones  1000
+5          Monitor     20000
+6          Keyboard    1000
+7          Mouse       500
+8          Printer     1000
+
+
+-- 12. Customer payment amount → discount → 0
+
+SELECT
+    order_id,
+    customer_name,
+    COALESCE(amount, discount, 0) AS payment
+FROM Orders;
+
+order_id customer_name payment
+101      Amit          1000
+102      John          50
+103      Sara          2000
+104      David         0
+105      Priya         1500
+106      Kiran         0
+107      Ravi          3000
+108      Neha          200
+
+
+-- 13. Convert salary to NULL if salary = 0
+
+SELECT
+    emp_id,
+    name,
+    NULLIF(salary,0) AS salary_check
+FROM Employees;
+
+emp_id name  salary_check
+1      Amit  50000
+2      John  NULL
+3      Sara  60000
+4      David NULL
+5      Priya 45000
+6      Kiran NULL
+7      Ravi  70000
+8      Neha  NULL
+
+
+-- 14. Convert discount to NULL if discount = 0
+
+SELECT
+    order_id,
+    NULLIF(discount,0) AS discount_check
+FROM Orders;
+
+order_id discount_check
+101      NULL
+102      50
+103      NULL
+104      NULL
+105      100
+106      NULL
+107      NULL
+108      200
+
+
+-- 15. Avoid divide by zero
+
+SELECT
+    order_id,
+    amount / NULLIF(discount,0) AS division_result
+FROM Orders;
+
+order_id division_result
+101      NULL
+102      NULL
+103      NULL
+104      NULL
+105      15
+106      NULL
+107      NULL
+108      NULL
+
+
+-- 16. Replace DISC10 with NULL
+
+SELECT
+    order_id,
+    NULLIF(coupon_code,'DISC10') AS coupon_code
+FROM Orders;
+
+order_id coupon_code
+101      NULL
+102      NULL
+103      DISC20
+104      NULL
+105      NULL
+106      DISC5
+107      NULL
+108      DISC15
+
+
+-- 17. Total earnings salary + bonus
+
+SELECT
+    emp_id,
+    name,
+    IFNULL(salary,0) + IFNULL(bonus,0) AS total_earnings
+FROM Employees;
+
+emp_id name  total_earnings
+1      Amit  50000
+2      John  5000
+3      Sara  60000
+4      David 0
+5      Priya 48000
+6      Kiran 0
+7      Ravi  77000
+8      Neha  2000
+
+
+-- 18. Employees where salary and bonus both NULL
+
+SELECT *
+FROM Employees
+WHERE salary IS NULL
+AND bonus IS NULL;
+
+emp_id name  salary bonus manager_id
+4      David NULL   NULL  103
+6      Kiran NULL   NULL  NULL
+
+
+-- 19. Products where price NULL but category exists
+
+SELECT *
+FROM Products
+WHERE price IS NULL
+AND category IS NOT NULL;
+
+product_id product_name price category     stock
+2          Phone       NULL  Electronics  NULL
+6          Keyboard    NULL  Accessories  15
+8          Printer     NULL  Electronics  3
+
+
+-- 20. Orders where amount and discount both NULL
+
+SELECT *
+FROM Orders
+WHERE amount IS NULL
+AND discount IS NULL;
+
+order_id customer_name amount discount coupon_code
+104      David         NULL   NULL     NULL
+106      Kiran         NULL   NULL     DISC5
+
+
+-- 21. Employee income using COALESCE
+
+SELECT
+    emp_id,
+    name,
+    COALESCE(salary, bonus, 1000) AS employee_income
+FROM Employees;
+
+emp_id name  employee_income
+1      Amit  50000
+2      John  5000
+3      Sara  60000
+4      David 1000
+5      Priya 45000
+6      Kiran 1000
+7      Ravi  70000
+8      Neha  2000
+
+
+-- 22. Replace empty discount with NULL
+
+SELECT
+    order_id,
+    NULLIF(discount,0) AS final_discount
+FROM Orders;
+
+order_id final_discount
+101      NULL
+102      50
+103      NULL
+104      NULL
+105      100
+106      NULL
+107      NULL
+108      200
+
+
+-- 23. Final payable amount
+
+SELECT
+    order_id,
+    customer_name,
+    IFNULL(amount,0) - IFNULL(discount,0) AS payable_amount
+FROM Orders;
+
+order_id customer_name payable_amount
+101      Amit          1000
+102      John          -50
+103      Sara          2000
+104      David         0
+105      Priya         1400
+106      Kiran         0
+107      Ravi          3000
+108      Neha          -200

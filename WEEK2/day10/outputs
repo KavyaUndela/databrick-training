@@ -1,0 +1,272 @@
+-- 1. LENGTH / CHAR_LENGTH
+
+SELECT
+full_name,
+LENGTH(full_name) AS length_value
+FROM employees;
+
+full_name          length_value
+Karthik Kondpak    16
+Veena Reddy        11
+Ravi kumar         10
+Anil               4
+ Suresh            8
+
+
+SELECT
+full_name,
+CHAR_LENGTH(full_name) AS char_length_value
+FROM employees;
+
+full_name          char_length_value
+Karthik Kondpak    16
+Veena Reddy        11
+Ravi kumar         10
+Anil               4
+ Suresh            8
+
+
+-- 2. UPPER / LOWER
+
+SELECT
+UPPER(department) AS upper_department,
+LOWER(city) AS lower_city
+FROM employees;
+
+upper_department   lower_city
+DATA ENGINEERING   hyderabad
+ANALYTICS          bangalore
+DATA SCIENCE       chennai
+DEVOPS             pune
+DATA ENGINEERING    hyderabad 
+
+
+-- 3. TRIM / LTRIM / RTRIM
+
+SELECT
+TRIM(full_name) AS trim_name,
+LTRIM(full_name) AS left_trim,
+RTRIM(full_name) AS right_trim
+FROM employees;
+
+trim_name         left_trim        right_trim
+Karthik Kondpak   Karthik Kondpak  Karthik Kondpak
+Veena Reddy       Veena Reddy      Veena Reddy
+Ravi kumar        Ravi kumar       Ravi kumar
+Anil              Anil             Anil
+Suresh            Suresh           Suresh
+
+
+-- 4. CONCAT
+
+SELECT
+CONCAT(full_name, ' - ', department) AS emp_details
+FROM employees;
+
+emp_details
+Karthik Kondpak - Data Engineering
+Veena Reddy - Analytics
+Ravi kumar - Data Science
+Anil - DEVOPS
+ Suresh  - data engineering
+
+
+-- 5. CONCAT_WS
+
+SELECT
+CONCAT_WS(' | ', emp_id, full_name, city)
+AS employee_info
+FROM employees;
+
+employee_info
+1 | Karthik Kondpak | Hyderabad
+2 | Veena Reddy | Bangalore
+3 | Ravi kumar | Chennai
+4 | Anil | Pune
+5 |  Suresh  |  hyderabad 
+
+
+-- 6. SUBSTRING / SUBSTR
+
+SELECT
+SUBSTRING(email,1,7) AS substring_email
+FROM employees;
+
+substring_email
+karthik
+veena_r
+ravi.ku
+anil@ab
+suresh@
+
+
+SELECT
+SUBSTR(email,1,5) AS substr_email
+FROM employees;
+
+substr_email
+karth
+veena
+ravi.
+anil@
+sures
+
+
+-- 7. LEFT / RIGHT
+
+SELECT
+LEFT(full_name,4) AS left_name,
+RIGHT(city,3) AS right_city
+FROM employees;
+
+left_name right_city
+Kart      bad
+Veen      ore
+Ravi      nai
+Anil      une
+ Sur      d  
+
+
+-- 8. INSTR
+
+SELECT
+email,
+INSTR(email,'@') AS at_position
+FROM employees;
+
+email                   at_position
+karthik.k@gmail.com     10
+veena_r@company.com     8
+ravi.kumar@org.in       11
+anil@abc.com            5
+suresh@xyz.com          7
+
+
+-- 9. LOCATE
+
+SELECT
+email,
+LOCATE('.',email) AS dot_position
+FROM employees;
+
+email                   dot_position
+karthik.k@gmail.com     8
+veena_r@company.com     16
+ravi.kumar@org.in       5
+anil@abc.com            9
+suresh@xyz.com          11
+
+
+-- 10. REPLACE
+
+SELECT
+REPLACE(department,'Data','Big Data')
+AS replaced_department
+FROM employees;
+
+replaced_department
+Big Data Engineering
+Analytics
+Big Data Science
+DEVOPS
+data engineering
+
+
+-- 11. REVERSE
+
+SELECT
+full_name,
+REVERSE(full_name) AS reverse_name
+FROM employees;
+
+full_name          reverse_name
+Karthik Kondpak    kapdnoK kihtraK
+Veena Reddy        yddeR aneeV
+Ravi kumar         ramuk ivaR
+Anil               linA
+ Suresh             hseruS 
+
+
+-- 12. LPAD / RPAD
+
+SELECT
+LPAD(emp_id,5,'0') AS padded_empid
+FROM employees;
+
+padded_empid
+00001
+00002
+00003
+00004
+00005
+
+
+SELECT
+RPAD(city,15,'*') AS padded_city
+FROM employees;
+
+padded_city
+Hyderabad******
+Bangalore******
+Chennai********
+Pune***********
+ hyderabad ****
+
+
+-- 13. TRIM + REPLACE
+
+SELECT
+TRIM(REPLACE(city,' ',''))
+AS cleaned_city
+FROM employees;
+
+cleaned_city
+Hyderabad
+Bangalore
+Chennai
+Pune
+hyderabad
+
+
+-- 14. IFNULL
+
+SELECT
+full_name,
+IFNULL(remarks,'No remarks')
+AS final_remarks
+FROM employees;
+
+full_name          final_remarks
+Karthik Kondpak    Top performer
+Veena Reddy        Excellent communication
+Ravi kumar         Needs improvement
+Anil               No remarks
+ Suresh             
+
+
+-- 15. COALESCE
+
+SELECT
+full_name,
+COALESCE(remarks,'N/A')
+AS remarks_value
+FROM employees;
+
+full_name          remarks_value
+Karthik Kondpak    Top performer
+Veena Reddy        Excellent communication
+Ravi kumar         Needs improvement
+Anil               N/A
+ Suresh             
+
+
+-- 16. FIND_IN_SET
+
+SELECT
+FIND_IN_SET(
+'Analytics',
+'Data,Analytics,AI'
+) AS position_value;
+
+position_value
+2

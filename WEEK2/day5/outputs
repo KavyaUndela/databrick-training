@@ -1,0 +1,184 @@
+-- 1. ABS – Absolute Value
+
+SELECT ABS(-100) AS absolute_value;
+
+absolute_value
+100
+
+
+-- 2. ROUND – Round to Decimals
+
+SELECT
+    emp_name,
+    ROUND(base_salary, 0) AS rounded_salary_0
+FROM employee_salary;
+
+emp_name rounded_salary_0
+Karthik 75001
+Veena   65000
+Ravi    85001
+Anil    70000
+Suresh  60001
+
+
+SELECT
+    emp_name,
+    ROUND(base_salary, 2) AS rounded_salary_2
+FROM employee_salary;
+
+emp_name rounded_salary_2
+Karthik 75000.75
+Veena   65000.40
+Ravi    85000.90
+Anil    70000.10
+Suresh  60000.55
+
+
+-- 3. CEILING / CEIL – Round Up
+
+SELECT
+    emp_name,
+    CEIL(base_salary) AS ceil_salary
+FROM employee_salary;
+
+emp_name ceil_salary
+Karthik 75001
+Veena   65001
+Ravi    85001
+Anil    70001
+Suresh  60001
+
+
+-- 4. FLOOR – Round Down
+
+SELECT
+    emp_name,
+    FLOOR(base_salary) AS floor_salary
+FROM employee_salary;
+
+emp_name floor_salary
+Karthik 75000
+Veena   65000
+Ravi    85000
+Anil    70000
+Suresh  60000
+
+
+-- 5. TRUNCATE – Remove Decimals
+
+SELECT
+    emp_name,
+    TRUNCATE(base_salary, 1) AS truncated_salary
+FROM employee_salary;
+
+emp_name truncated_salary
+Karthik 75000.7
+Veena   65000.4
+Ravi    85000.9
+Anil    70000.1
+Suresh  60000.5
+
+
+-- 6. MOD – Remainder
+
+SELECT
+    emp_name,
+    MOD(experience_years, 2) AS remainder_value
+FROM employee_salary;
+
+emp_name remainder_value
+Karthik 0
+Veena   0
+Ravi    0
+Anil    1
+Suresh  1
+
+
+-- 7. POWER / POW – Exponent
+
+SELECT POWER(2,3) AS power_result;
+
+power_result
+8
+
+
+SELECT POW(5,2) AS pow_result;
+
+pow_result
+25
+
+
+-- 8. SQRT – Square Root
+
+SELECT SQRT(64) AS square_root;
+
+square_root
+8
+
+
+-- 9. SIGN – Sign of Number
+
+SELECT
+    emp_name,
+    SIGN(base_salary) AS sign_value
+FROM employee_salary;
+
+emp_name sign_value
+Karthik 1
+Veena   1
+Ravi    1
+Anil    1
+Suresh  1
+
+
+-- 10. RAND – Random Number
+
+SELECT RAND() AS random_number;
+
+random_number
+0.48372651
+
+
+-- 11. FORMAT – Format Number
+
+SELECT
+    emp_name,
+    FORMAT(base_salary,2) AS formatted_salary
+FROM employee_salary;
+
+emp_name formatted_salary
+Karthik 75,000.75
+Veena   65,000.40
+Ravi    85,000.90
+Anil    70,000.10
+Suresh  60,000.55
+
+
+-- 12. GREATEST – Maximum Value
+
+SELECT
+    emp_name,
+    GREATEST(base_salary, IFNULL(bonus,0)) AS maximum_value
+FROM employee_salary;
+
+emp_name maximum_value
+Karthik 75000.75
+Veena   65000.40
+Ravi    85000.90
+Anil    70000.10
+Suresh  60000.55
+
+
+-- 13. LEAST – Minimum Value
+
+SELECT
+    emp_name,
+    LEAST(base_salary, IFNULL(bonus,0)) AS minimum_value
+FROM employee_salary;
+
+emp_name minimum_value
+Karthik 5000.50
+Veena   4000.25
+Ravi    6000.75
+Anil    0
+Suresh  3000.30
